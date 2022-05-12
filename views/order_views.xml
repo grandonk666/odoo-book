@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- library.order tree view -->
+    <record id="library_order_view_tree" model="ir.ui.view">
+        <field name="name">Library Order</field>
+        <field name="model">library.order</field>
+        <field name="arch" type="xml">
+        
+            <tree>
+            
+                <!-- Add your fields here -->
+                <field name="name"/>   
+                <field name="customer"/>        
+                <field name="order_book_detail"/>
+                <field name="total"/>                
+            </tree>
+        </field>
+    </record>
+
+    <!-- library.order form view -->
+    <record id="library_order_view_form" model="ir.ui.view">
+        <field name="name">Form Order</field>
+        <field name="model">library.order</field>
+        <field name="arch" type="xml">
+        
+            <form string="Order Detail">
+            
+                <sheet>                
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>   
+                        <field name="customer"/>            
+                        <field name="total"/>                           
+                        <field name="order_book_detail">
+                            <tree editable='bottom'>
+                                <field name="book_id"/>  
+                                <field name="single_price"/> 
+                                <field name="qty"/> 
+                                <field name="price" sum="Total"/>                                        
+                            </tree>
+                        </field>                                         
+                    </group> 
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- library_order_action action window -->
+    <record id="library_order_action" model="ir.actions.act_window">
+        <field name="name">Book Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">library.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem 
+        id="library_order_menu_action" 
+        name="Book Order" 
+        parent="library_order_menu_category" 
+        action="library_order_action" 
+        sequence="10"/>
+
+</odoo>
